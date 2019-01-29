@@ -1971,6 +1971,10 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var uncheck = true;
+var check = true;
+
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = {
@@ -2038,6 +2042,18 @@ module.exports = {
     },
     getClassCheckbox: function getClassCheckbox(treeview, item) {
         var classNames = ['checkbox'];
+
+				if (uncheck && check) {
+
+				if (treeview.props.features != "" && treeview.props.features != undefined){
+					for (var i = 0; i <treeview.props.features.length ; i++) {
+						if (item.text == treeview.props.features[i].name){
+						   //item.state =  treeview.props.features[i].state
+							 item.state = 1
+					  }
+           }
+				}
+			 }
 
         if (treeview.props.showCheckbox) {
             if (item.state === _deniReactTreeviewItem.CHECKBOX_STATE.CHECKED) {
@@ -2198,16 +2214,18 @@ module.exports = {
     //
     checkNode: function checkNode(treeviewItem, item) {
         item.state = _deniReactTreeviewItem.CHECKBOX_STATE.CHECKED;
-        _refreshCheckboxStateChildren(item);
-        _refreshCheckboxStateParents(treeviewItem);
+				check = false;
+        //_refreshCheckboxStateChildren(item);
+        //_refreshCheckboxStateParents(treeviewItem);
     },
 
 
     //
     uncheckNode: function uncheckNode(treeviewItem, item) {
         item.state = _deniReactTreeviewItem.CHECKBOX_STATE.UNCHECKED;
-        _refreshCheckboxStateChildren(item);
-        _refreshCheckboxStateParents(treeviewItem);
+				uncheck = false;
+        //_refreshCheckboxStateChildren(item);
+        //_refreshCheckboxStateParents(treeviewItem);
     }
 };
 
