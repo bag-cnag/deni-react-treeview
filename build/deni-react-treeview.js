@@ -2042,12 +2042,22 @@ module.exports = {
     },
     getClassCheckbox: function getClassCheckbox(treeview, item) {
         var classNames = ['checkbox'];
+				var clean = []
 
 				if (uncheck && check) {
 
 				if (treeview.props.features != "" && treeview.props.features != undefined){
-					for (var i = 0; i <treeview.props.features.length ; i++) {
-						if (item.text == treeview.props.features[i].name){
+
+					if (typeof(treeview.props.features) == "string"){
+						clean = JSON.parse(treeview.props.features)
+					}
+
+					else{
+						clean = treeview.props.features
+					}
+
+					for (var i = 0; i <clean.length ; i++) {
+						if (item.text == clean[i].name){
 						   //item.state =  treeview.props.features[i].state
 							 item.state = 1
 					  }
