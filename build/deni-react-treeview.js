@@ -2044,7 +2044,7 @@ module.exports = {
         var classNames = ['checkbox'];
 				var clean = []
 
-				if (uncheck && check) {
+				//if ((uncheck && check)) {
 
 				if (treeview.props.features != "" && treeview.props.features != undefined){
 
@@ -2057,13 +2057,29 @@ module.exports = {
 					}
 
 					for (var i = 0; i <clean.length ; i++) {
-						if (item.text == clean[i].name){
+						if (item.text == clean[i].name || item.text == clean[i].text){
 						   //item.state =  treeview.props.features[i].state
 							 item.state = 1
+
+							 if (treeview.api.getSelectedItem() != undefined){
+
+							 if (uncheck == false && treeview.api.getSelectedItem().state==1){
+								 //item.state = 2
+								 treeview.api.getSelectedItem().state = 1
+
+							 }
+
+							 if (check == false && treeview.api.getSelectedItem().state==2){
+								//item.state = 1
+								treeview.api.getSelectedItem().state = 2
+							}
+						}
 					  }
+
+
            }
 				}
-			 }
+			 //}
 
         if (treeview.props.showCheckbox) {
             if (item.state === _deniReactTreeviewItem.CHECKBOX_STATE.CHECKED) {
