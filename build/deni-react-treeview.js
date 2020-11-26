@@ -1261,6 +1261,16 @@ module.exports = {
     if (this.props.onAfterLoad) {
       this.props.onAfterLoad(dataToLoad, item);
     }
+    
+    //Add a custom classname to the root checkboxes of the default hpo template for the css reference
+    if (document.getElementsByClassName("level-1")[0] !== undefined){
+      if (this.props.json.includes("generic")) {
+        var root_elements = document.getElementsByClassName("level-1");
+        for (var t = 0; t < root_elements.length; t++) {
+          root_elements[t].classList.add("generic_template");
+        }
+      }
+    }
   }
 };
 
